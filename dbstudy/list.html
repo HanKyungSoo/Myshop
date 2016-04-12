@@ -1,0 +1,19 @@
+<?
+include "./dbconn.inc";
+
+$table_name = "board_free";
+
+if(!strcmp($mode,"read")){
+ $query = "update $table_name set hit = hit + 1 where uno = $read_uno";
+ $result = mosql_query($query,$dbconn);
+
+ $query = "select name, email, homepage, subject, content, client_ip,html_tag
+			from $table_name where uno = $read_uno";
+ $result = mysql_query($query,$dbconn);
+
+ $name = mysql_result($result,0,0);
+ $email = mysql_result($result,0,1);
+ $homepage = mysql_result($result,0,2);
+ $subject = mysql_result($result,0,3);
+}
+?>
